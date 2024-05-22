@@ -5,12 +5,15 @@ const nextConfig = {
         protocol: "https",
         hostname: "cdn.sanity.io",
       },
+      {
+        protocol: "https",
+        hostname: "via.placeholder.com",
+      },
     ],
   },
   experimental: {
     taint: true,
   },
-  // ...other config settings
 };
 
 export default nextConfig;
