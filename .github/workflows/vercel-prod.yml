@@ -36,11 +36,11 @@ jobs:
       - name: Install Vercel CLI
         run: yarn global add vercel@latest
       - name: Check Token vercel
-        run: echo ${{ secrets.VERCEL_TOKEN }}
+        run: echo '${{ secrets.VERCEL_TOKEN }}'
       - name: Pull Vercel environment information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=production --token='${{ secrets.VERCEL_TOKEN }}'
       - name: Build project artifacts
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel build --prod --token='${{ secrets.VERCEL_TOKEN }}'
       - name: Deploy Production
         id: deploy-production
         run: |
@@ -50,4 +50,4 @@ jobs:
           PERCENTAGE=$(echo "$LAST" | awk 'BEGIN {maxtotal=15000} { printf "%.2f%%", ($1/maxtotal*100) }')
           echo "Vercel file usage percentage" >> $GITHUB_STEP_SUMMARY
           echo "$PERCENTAGE" >> $GITHUB_STEP_SUMMARY
-          vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+          vercel deploy --prebuilt --prod --token='${{ secrets.VERCEL_TOKEN }}'
