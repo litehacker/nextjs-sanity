@@ -35,6 +35,8 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Install Vercel CLI
         run: yarn global add vercel@latest
+      - name: Check Token vercel
+        run: echo $VERCEL_TOKEN ${{ secrets.VERCEL_TOKEN }}
       - name: Pull Vercel environment information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build project artifacts
