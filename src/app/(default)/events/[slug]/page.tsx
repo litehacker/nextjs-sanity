@@ -1,19 +1,10 @@
 import { PortableText } from "@portabletext/react";
 import { SanityDocument } from "next-sanity";
-import imageUrlBuilder from "@sanity/image-url";
-
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Link from "next/link";
 import Image from "next/image";
-import { client } from "@/sanity/lib/client";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { EVENT_QUERY } from "@/sanity/lib/queries";
-
-const { projectId, dataset } = client.config();
-export const urlFor = (source: SanityImageSource) =>
-  projectId && dataset
-    ? imageUrlBuilder({ projectId, dataset }).image(source)
-    : null;
+import { urlForImage } from "@/sanity/lib/image";
 
 export default async function EventPage({
   params,
@@ -35,9 +26,7 @@ export default async function EventPage({
     venue,
     tickets,
   } = event;
-  const eventImageUrl = image
-    ? urlFor(image)?.width(550).height(310).url()
-    : null;
+  const eventImageUrl = image ? urlForImage(image) : null;
   const eventDate = new Date(date).toDateString();
   const eventTime = new Date(date).toLocaleTimeString();
   const doorsOpenTime = new Date(
