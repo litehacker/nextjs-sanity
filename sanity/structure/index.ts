@@ -27,4 +27,6 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem("author").title("Authors").icon(AsteriskIcon),
       S.documentTypeListItem("post").title("Posts").icon(BlockquoteIcon),
       S.documentTypeListItem("category").title("Categories").icon(UlistIcon),
+      S.divider(),
+      S.documentTypeListItem("page").title("Pages"),
     ]);
