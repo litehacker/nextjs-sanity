@@ -10,7 +10,7 @@ import { token } from "./token";
  * and will also fetch from the CDN.
  * When using the "previewDrafts" perspective then the data is fetched from the live API and isn't cached, it will also fetch draft content that isn't published yet.
  */
-export async function sanityFetch<QueryResponse>({
+export async function sanityFetch<T>({
   query,
   params = {},
   perspective = draftMode().isEnabled ? "previewDrafts" : "published",
@@ -28,7 +28,7 @@ export async function sanityFetch<QueryResponse>({
   stega?: boolean;
 }) {
   if (perspective === "previewDrafts") {
-    return client.fetch<QueryResponse>(query, params, {
+    return client.fetch<T>(query, params, {
       stega,
       perspective: "previewDrafts",
       // The token is required to fetch draft content
@@ -39,7 +39,7 @@ export async function sanityFetch<QueryResponse>({
       next: { revalidate: 0 },
     });
   }
-  return client.fetch<QueryResponse>(query, params, {
+  return client.fetch<T>(query, params, {
     stega,
     perspective: "published",
     // The `published` perspective is available on the API CDN

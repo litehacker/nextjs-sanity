@@ -8,8 +8,8 @@ import { structureTool } from "sanity/structure";
 import { apiVersion, dataset, projectId } from "./sanity/env";
 import { schema } from "./sanity/schema";
 
-import { structure } from "@/sanity/structure";
-import { defaultDocumentNode } from "@/sanity/structure/defaultDocumentNode";
+import { structure } from "./sanity/structure";
+import { defaultDocumentNode } from "./sanity/structure/defaultDocumentNode";
 import { vercelDeployTool } from "sanity-plugin-vercel-deploy";
 
 export default defineConfig({

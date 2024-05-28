@@ -18,6 +18,31 @@ pnpm dev
 bun dev
 ```
 
+## Generate types for the frontent
+
+Run the following Sanity CLI command in your studio project folder:  
+`npx sanity schema extract`  
+If your command ran successfully, you should see a new file called `schema.json` in your Studio project folder. In this course, you will only use this file for the type generation; you don’t need to do anything else with it.  
+You do this by running this Sanity CLI command:  
+`npx sanity typegen generate`  
+When successfully completed, this command creates a `sanity.types.ts` file containing TypeScript types for all your Sanity Studio schema types. Open it to find types for “built-in” schema types. If you have plugins with schema types, those will also be generated.  
+Before you can generate types for GROQ query results, you must add some configuration that tells the TypeGen tooling where to look for those queries and where to put the file with the generated types.  
+Before diving in, it’s important to remember that you are still dependent on the `schema.json` file to generate types for your front end. You should also keep in mind that every time you change the Studio’s schema, you will have to rerun the extraction, and every time you change a GROQ query, you should update your types as well.  
+Make a new file called `sanity-typegen.json` in your Studio folder and paste the following configuration into it:
+
+```json
+// /sanity-typegen.json
+{
+  "path": "'./sanity/**/*.{ts,tsx,js,jsx}'",
+  "schema": "schema.json",
+  "generates": "/src/types/sanity.ts"
+}
+```
+
+With this configuration file in place, you can now run the `typegen` command:
+
+`npx sanity typegen generate`
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

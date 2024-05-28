@@ -1,7 +1,7 @@
-import { SanityDocument } from "next-sanity";
+import { EVENTS_QUERYResult } from "@/types/sanity";
 import Link from "next/link";
 
-export const Events = ({ events }: { events: SanityDocument[] }) => {
+export const Events = ({ events }: { events: EVENTS_QUERYResult[] }) => {
   return (
     <section>
       <h2 className="text-4xl font-bold tracking-tighter">Events</h2>

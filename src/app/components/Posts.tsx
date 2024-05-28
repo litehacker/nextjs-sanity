@@ -1,7 +1,7 @@
-import { SanityDocument } from "next-sanity";
+import { POSTS_QUERYResult } from "@/types/sanity";
 import Link from "next/link";
 
-export default function Posts({ posts }: { posts: SanityDocument[] }) {
+export default function Posts({ posts }: { posts: POSTS_QUERYResult[] }) {
   return (
     <main className="container mx-auto grid grid-cols-1 divide-y divide-blue-100">
       {posts?.length > 0 ? (
